@@ -1,10 +1,23 @@
-import { Image, StyleSheet, Platform, View, SafeAreaView,Text } from 'react-native';
-
+import { Image, StyleSheet, Platform, View, SafeAreaView,Text, Pressable, TextComponent } from 'react-native';
+import { Link, useRouter } from 'expo-router';
+import { useState, useEffect } from 'react';
 
 export default function HomeScreen() {
+  const [auth, setAuth] = useState(false)
+  const router = useRouter()
+
+  useEffect(() => {
+    if(auth){
+      router.navigate('/explore')
+    }
+  },[auth])
+
   return (
     <SafeAreaView>
       <Text>Home</Text>
+    <Pressable onPress={() => setAuth(true)}>
+      <Text>Login</Text>
+    </Pressable>
     </SafeAreaView>
   );
 }
